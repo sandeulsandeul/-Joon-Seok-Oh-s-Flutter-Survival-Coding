@@ -31,7 +31,7 @@ class TodoListPage extends StatefulWidget {
 class _TodoListPageState extends State<TodoListPage>{
   // 할 일 목록을 저장할 리스트
   final _items = <Todo>[];
-  // 할 일 문자열 조작을 위한 커트롤러
+  // 할 일 문자열 조작을 위한 컨트롤러
   var _todoController = TextEditingController();
   @override
   void dispose(){
@@ -69,6 +69,25 @@ class _TodoListPageState extends State<TodoListPage>{
             ],
           ),
         ),
+    );
+  }
+
+  Widget _buildItemWidget(Todo todo){
+    //Todo 객체를 인수로 받고 ListTile위젯을 반환
+    return ListTile(
+      onTap: (){}, //Todo: 클릭시 완료/취소되도록 수정
+      title: Text(
+        todo.title,
+        style: todo.isDone
+          ?TextStyle(
+            decoration: TextDecoration.lineThrough,
+            fontStyle: FontStyle.italic,
+        ):null,
+      ),
+      trailing: IconButton(
+        icon: Icon(Icons.delete_forever),
+        onPressed: (){},
+      ),
     );
   }
 }
