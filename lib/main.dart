@@ -72,7 +72,6 @@ class _TodoListPageState extends State<TodoListPage>{
         ),
     );
   }
-
   Widget _buildItemWidget(Todo todo){
     //Todo 객체를 인수로 받고 ListTile위젯을 반환
     return ListTile(
@@ -90,6 +89,25 @@ class _TodoListPageState extends State<TodoListPage>{
         onPressed: (){},
       ),
     );
+  }
+  // 할 일 추가 메서드
+  Widget _addTodo(Todo todo) {
+    setState(() {
+      _items.add(todo);
+      _todoController.text = ''; 
+    });
+  }
+  // 할일 삭제 메서드
+  Widget _deleteTodo(Todo todo){
+    setState(() {
+      _items.remove(todo);
+    });
+  }
+  //할 일 완료/미완료 메서드
+  Widget _toggleTodo(Todo todo){
+    setState(() {
+      todo.isDone = !todo.isDone;
+    });
   }
 }
 
